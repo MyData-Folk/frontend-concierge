@@ -1,0 +1,190 @@
+/* ============================================================
+   ParisLocal — Feuille de style globale
+   Identité visuelle : Haussmannien, Élégance, Authenticité
+   ============================================================ */
+
+@import "tailwindcss";
+
+/* --- Tailwind v4 theme tokens — Palette parisienne --- */
+@theme {
+  --color-paris-creme:   #FDFBF7;
+  --color-paris-pierre:  #F5F0E8;
+  --color-paris-noir:    #1C1C1C;
+  --color-paris-sepia:   #6B5E53;
+  --color-paris-rouge:   #C83C3C;
+  --color-paris-vert:    #2C5530;
+  --color-paris-dore:    #D4A853;
+  --color-paris-bordure: #E5DDD3;
+
+  --font-serif: 'Playfair Display', serif;
+  --font-sans:  'DM Sans', sans-serif;
+}
+
+/* --- Variables CSS — Palette parisienne --- */
+:root {
+  --paris-creme:   #FDFBF7; /* Fond principal (papier vélin) */
+  --paris-pierre:  #F5F0E8; /* Fond secondaire (pierre de taille) */
+  --paris-noir:    #1C1C1C; /* Texte principal */
+  --paris-sepia:   #6B5E53; /* Texte secondaire / élégance */
+  --paris-rouge:   #C83C3C; /* Accent : Bistro / Kiosque */
+  --paris-vert:    #2C5530; /* Accent : Bancs / Colonnes Morris */
+  --paris-dore:    #D4A853; /* Accent : Laiton / Plaques émaillées */
+  --paris-bordure: #E5DDD3; /* Filets et séparateurs */
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #2a2a2a;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--paris-noir);
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#root {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100dvh;
+  background-color: var(--paris-creme);
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- Typographie --- */
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
+.font-sans {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* --- Motif de fond subtil (mosaïque parisienne) --- */
+.paris-bg-pattern {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(212, 168, 83, 0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* --- Filet doré fin (ornement) --- */
+.paris-gold-line {
+  border-top: 1px solid var(--paris-dore);
+  opacity: 0.4;
+}
+
+/* --- Ombres "halo" style parisien --- */
+.shadow-paris {
+  box-shadow:
+    0 2px 8px rgba(28, 28, 28, 0.06),
+    0 1px 3px rgba(28, 28, 28, 0.04);
+}
+.shadow-paris-md {
+  box-shadow:
+    0 4px 20px rgba(28, 28, 28, 0.10),
+    0 2px 6px rgba(28, 28, 28, 0.06);
+}
+.shadow-paris-lg {
+  box-shadow:
+    0 8px 40px rgba(28, 28, 28, 0.14),
+    0 4px 12px rgba(28, 28, 28, 0.08);
+}
+
+/* --- Animations globales --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.018); }
+}
+
+@keyframes blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95%            { transform: scaleY(0.05); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 168, 83, 0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(212, 168, 83, 0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes drawerIn {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.animate-fadeIn   { animation: fadeIn  0.4s ease both; }
+.animate-slideUp  { animation: slideUp 0.5s ease both; }
+.animate-breathe  { animation: breathe 3.5s ease-in-out infinite; }
+.animate-blink    { animation: blink   4s ease-in-out infinite; }
+.animate-pulse-gold { animation: pulse-gold 2s ease infinite; }
+
+/* --- Bouton "enfoncé" au clic --- */
+.btn-press {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  user-select: none;
+}
+.btn-press:active {
+  transform: scale(0.94);
+  box-shadow: 0 1px 4px rgba(28,28,28,0.08) inset;
+}
+
+/* --- Scrollbar discrète --- */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--paris-bordure); border-radius: 99px; }
+
+/* --- Backdrop blur pour le menu bas --- */
+.backdrop-nav {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(253, 251, 247, 0.88);
+}
+
+/* --- Badge "Coup de cœur" shimmer --- */
+.badge-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--paris-dore) 0%,
+    #f0c878 50%,
+    var(--paris-dore) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* --- Carte lieu : bordure catégorie --- */
+.card-resto   { border-left: 3px solid var(--paris-rouge); }
+.card-culture { border-left: 3px solid var(--paris-dore);  }
+.card-service { border-left: 3px solid var(--paris-vert);  }
